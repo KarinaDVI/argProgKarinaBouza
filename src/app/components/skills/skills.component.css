@@ -1,0 +1,31 @@
+.row{
+
+    /*padding:30px;*/
+    background-color:rgb(107, 177, 246);
+    border-radius: 100px;
+    border-style: ridge;
+}
+.card{
+
+    padding:40px;
+    background-color:dodgerblue;
+    padding-left: -1rem;
+}
+circle-progress{
+    align-self:center;
+
+}
+
+.padding{
+    padding-right: 50px;
+    padding-left: 25px;
+}
+.container{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+}
+
+
+
+

@@ -29,17 +29,17 @@ div{
         margin-top:5%;
     }
 }
-    @media(max-width:575px){
-        #fotoPerfil{ 
-            position: relative;
-            width:45%;
-            border-radius:100%;
-            box-shadow: 3px 3px 3px yellowgreen;
-            left: 3%;
-            top: -60%;
-        }
-        #nombre{
-            font-weight:bold;
-            margin-top:-20%;
-        }
+@media(max-width:575px){
+    #fotoPerfil{ 
+        position: relative;
+        width:35%;
+        border-radius:100%;
+        box-shadow: 3px 3px 3px yellowgreen;
+        left: 3%;
+        top: -60%;
+    }
+    #nombre{
+        font-weight:bold;
+        margin-top:-20%;
+    }
 }

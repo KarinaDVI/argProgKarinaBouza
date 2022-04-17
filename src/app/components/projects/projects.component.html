@@ -1,0 +1,58 @@
+<!--
+<div class="row">
+
+    <h1>Proyectos realizados</h1>
+    <div class="data-container">
+        <div class="list-info"></div>
+        <div class="col-sm-12 col-md-7 col-lg-7 parte1">
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Magnam, deserunt accusamus, omnis facilis eum pariatur
+                minima consequuntur aliquid nihil velit blanditiis natus
+                voluptatibus sint, ea ab
+                quas quod inventore saepe.</p>
+
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 offset-md-1 offset-lg-1 parte2">
+            <img src="..//../../assets/proy1.png" class="img-fluid img-proyecto">
+        </div>
+    </div>
+</div>
+-->
+
+<div class="row">
+
+    <div class="border">
+        <h1>Proyectos realizados</h1>
+        <div >
+            <ul class="item-list">
+                <li *ngFor="let proyect of proyectsList">
+                    <div class="col-sm-12 col-md-7 col-lg-7 parte1">
+                        <h3>Nombre: {{proyect.name}}</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Magnam, deserunt accusamus, omnis facilis eum pariatur
+                            minima consequuntur aliquid nihil velit blanditiis natus
+                            voluptatibus sint, ea ab
+                            quas quod inventore saepe.</p>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3 offset-md-1 offset-lg-1 parte2">
+                        <img src={{proyect.img}} class="img-fluid img-proyecto">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+<!--
+    <div class="col-sm-12 col-md-3 col-lg-3 offset-md-1 offset-lg-1 parte2">
+        <ul class="item-list">
+            <li *ngFor="let proyect of proyectsList">
+                <div>
+                    <img src={{proyect.img}} class="img-fluid img-proyecto">
+                </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+-->
