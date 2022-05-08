@@ -14,7 +14,7 @@ export class ExperienceComponent implements OnInit {
     experienceList:any;
 
   ngOnInit(): void {
-    this.datosExpe.obtenerDatos().subscribe(data=>{
+    this.datosExpe.obtenerDatosJson().subscribe(data=>{
       console.log(data);
       this.experienceList=data.experience});
     }

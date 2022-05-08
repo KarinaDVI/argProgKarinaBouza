@@ -1,0 +1,36 @@
+<div class="persona">
+    <h1>Clase persona</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+            <img src="../../../assets/perfil.jpg" >
+            <img src={{persona.urlImage}} 
+            alt="" class="img-fluid" id="fotoPerfil">
+        </div>
+        <div id="nombre" class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+            <p>{{persona.nombre}}{{persona.apellido}}</p>
+            <p>{{persona.edad}} años </p>
+            <p>{{persona.seniority}} </p>
+            <p>{{persona.company}}</p>
+            <p>{{persona.position}}</p>
+            <button class="btn btn-info mb-3"  >Eliminar!</button>
+            <button class="btn btn-warning mb-3" (click)="editarPersona(persona)" >Editar</button>
+            <button class="btn btn-danger mb-3" (click)="borrarPersona(persona)" >Eliminar</button>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <span>
+                <h1>Acerca de mi</h1>
+                <p>{{persona.abouts}}</p>
+            </span>
+        </div>
+        <!--<div class="btn-group" role="group" aria-label="Basic example">
+            <button class="btn btn-info" routerLink="/aboutnuevo"><i class="far fa-edit"></i> nuevo about</button>
+            <button class="btn btn-warning" routerLink="/aboutEdit"><i class="far fa-edit"></i> modificar about</button>
+            <button type="button" (click)="eliminarAbout(aboutMeList.id)" class="btn btn-danger">Eliminar</button>
+        </div>--> 
+        <ul>
+            <li>Datos</li>
+            <li>Otros</li>
+        </ul>
+    </div>
+    
+</div>

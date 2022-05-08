@@ -16,7 +16,7 @@ export class EducationExperienceComponent implements OnInit {
   //educa = new Educa("2008","#","EEMNº2 BR","finalizado");
 
   ngOnInit(): void {
-    this.datosEduExpe.obtenerDatos().subscribe(data=>{
+    this.datosEduExpe.obtenerDatosJson().subscribe(data=>{
       console.log(data);
         this.educationList=data.education})
   }

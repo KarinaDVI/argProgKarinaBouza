@@ -1,30 +1,14 @@
 
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-            <img src="../../../assets/perfil.jpg" 
-            alt="" class="img-fluid" id="fotoPerfil">
+    <div class="personas" >
+        <h3> Esto es el about!</h3>
+            <div *ngFor="let persona of personas">
+                <app-persona [persona]="persona" 
+                (deletePersona)="borrarPersonaDeLista($event)"
+                (editPersona)="modificarPersona($event)">
+                
+                </app-persona>
         </div>
-        <div id="nombre" class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-            <p>{{aboutMeList.name}} </p>
-            <p>{{aboutMeList.position}} </p>
-            <p>{{aboutMeList.age}} años</p>
-        </div>
-        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-            <span>
-                <h1>Acerca de mi</h1>
-                <p>{{aboutMeList.about}}</p>
-            </span>
-        </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" (click)="agregarAbout()" class="btn btn-info">Agregar</button>
-            <button type="button" (click)="modificarAbout(aboutMeList.id)" class="btn btn-warning">Editar</button>
-            <button type="button" (click)="eliminarAbout(aboutMeList.id)" class="btn btn-danger">Eliminar</button>
-          </div> 
-        <ul>
-            <li>Datos</li>
-            <li>Otros</li>
-        </ul>
     </div>
-    
 </div>
+

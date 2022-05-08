@@ -1,9 +1,12 @@
 export class Proyects{
-    name:String;
-    img:String;
+    id?:number;
+    name:string;
+    about:string;
+    img:string;
 
-constructor(name:String="",img:String=""){
+constructor(name:string,about:string,img:string){
     this.name=name;
+    this.about=about;
     this.img=img;
 
 }

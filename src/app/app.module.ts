@@ -18,10 +18,13 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutenticationService } from './services/autentication.service';
 import { InterceptorService } from './services/interceptor.service';
 import { EditAboutComponent } from './components/edit-about/edit-about.component';
+import { NewAboutComponent } from './components/new-about/new-about.component';
+import { NewSkillComponent } from './components/new-skill/new-skill.component';
+import { PersonaComponent } from './components/persona/persona.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,14 +40,18 @@ import { EditAboutComponent } from './components/edit-about/edit-about.component
     FooterComponent,
     LoginComponent,
     PortfolioComponent,
-    EditAboutComponent
+    EditAboutComponent,
+    NewAboutComponent,
+    NewSkillComponent,
+    PersonaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgCircleProgressModule.forRoot({}),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [GetDataServiceService, AutenticationService, 
   {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true},

@@ -13,7 +13,7 @@ export class ProjectsComponent implements OnInit {
   proyectsList:any;
 
   ngOnInit(): void {
-    this.proyectData.obtenerDatos().subscribe(data=>{
+    this.proyectData.obtenerDatosJson().subscribe(data=>{
       console.log(data);
         this.proyectsList=data.achivements});
   }

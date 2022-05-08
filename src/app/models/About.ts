@@ -1,14 +1,25 @@
 export class About{
-    id?:number;
-    nombre:String;
+    id:number;
+    nombre:string;
+    apellido:string;
     edad:number;
-    seniority:String;
+    seniority:string;
+    urlImage:string;
+    company:string;
+    position:string;
+    abouts:string;
     
-    constructor(nombre:String="",edad:number=0,seniority:String=""){
-        
+    constructor(id:number=0,nombre:string="",apellido:string="",edad:number=36,seniority:string="",
+    urlImage:string="",company:string="",position:string="",abouts:string=""){
+        this.id=id;
         this.nombre=nombre;
+        this.apellido=apellido;
         this.edad=edad;
         this.seniority=seniority;
+        this.urlImage=urlImage;
+        this.company=company;
+        this.position=position;
+        this.abouts=abouts;
     }
     edadMia(): number{
         let currentTime = new Date()

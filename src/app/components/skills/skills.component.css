@@ -26,6 +26,10 @@ circle-progress{
     align-items: center;
 }
 
+.colorPicker{
+    color:outerStrokeColor;
+}
+
 
 
 
