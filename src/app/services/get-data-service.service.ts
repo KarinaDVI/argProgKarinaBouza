@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { About } from '../models/About';
+import { Persona } from '../models/Persona';
 import { Skill } from '../models/Skill';
 
 @Injectable({
@@ -11,64 +11,60 @@ export class GetDataServiceService {
 
    //Cambiar por la direccion de la api
    //url:string="http://cambiar";
-  personas: About[] = [] 
+  //personas: Persona[] = [] 
 
-  private apiURL='http://localhost:8000/api/'
+  apiURL='http://localhost:8000/apikb/'
 
-  private personUrl = this.apiURL + 'person/'
+  personUrl = 'http://localhost:8000/apikb/person/'
   private skillUrl = this.apiURL + 'skill/'
   private educationUrl = this.apiURL + 'education/'
   private experienceUrl = this.apiURL + 'experience/'
   private projectsUrl = this.apiURL + 'projects/'
 
   constructor(private http:HttpClient) { }
-
-  //Urls de la api
    
  
   private handleError<T>(operation = 'operation', result?: T){
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-  
-      // TODO: better job of transforming error for user consumption
+      console.error(error); 
       console.log(`${operation} failed: ${error.message}`);
-  
-      // Let the app keep running by returning an empty result.
       return of(result as T);
   }
 }
-  public lista(): Observable<About[]>{
-    return this.http.get<About[]>(this.personUrl +'all').pipe(
+  public getAllPersonas(): Observable<Persona>{
+    return this.http.get<Persona>(this.personUrl +'all');
+}
+
+  public getlistaPersonas(): Observable<Persona[]>{
+    return this.http.get<Persona[]>(this.personUrl +'all').pipe(
       //Con otra api:
     //return this.http.get<Persona[]>(this.personasURl+'/traer').pipe(
-      catchError(this.handleError<About[]>('getAllPersonas',[])));
+      catchError(this.handleError<Persona[]>('getAllPersonas',[])));
   }
 
    //Metodos que hay que crearles endpoints en el api
-  public detailAbout(id:number):Observable<About>{
-    return this.http.get<About>(this.personUrl + `detail/${id}`);
+  public detailPersona(id:number):Observable<Persona>{
+    return this.http.get<Persona>(this.personUrl + `detail/${id}`);
   }
-  public detailName(nombre:String):Observable<About>{
-    return this.http.get<About>(this.personUrl + `detailName/${nombre}`);
+  public detailName(nombre:String):Observable<Persona>{
+    return this.http.get<Persona>(this.personUrl + `detailName/${nombre}`);
   }
   
-  public saveAbout(aboutMe:About):Observable<any>{
-    return this.http.post<any>(this.personUrl + 'create',aboutMe);
+  public savePersona(persona:Persona):Observable<any>{
+    return this.http.post<any>(this.personUrl + 'create',persona);
   }
-  public updateAbout(id:number,aboutMe:About[]):Observable<any>{
-    return this.http.put<any>(this.personUrl + `update/${id}`,aboutMe);
+  public updatePersona(id:number,persona:Persona[]):Observable<any>{
+    return this.http.put<any>(this.personUrl + `update/${id}`,persona);
   }
-  //Usar este..
-  public deleteAbout(id: number): Observable<About>{
-    return this.http.delete<About>(this.personUrl + `/${id}`)
+  //Usar este..//(Prefereible)
+  public removerPersona(id: number): Observable<Persona>{
+    return this.http.delete<Persona>(this.personUrl + `/${id}`)
   };
 
   //O este..
-  removerPersona(personas: About[], personaParaBorrar: About ) {
+  deletePersona(personas: Persona[], personaParaBorrar: Persona ): Observable<Persona> {
     personas.filter(p => p.id !== personaParaBorrar.id)
-    this.http.delete<any>(this.personUrl + "/" + personaParaBorrar.id);
+    return this.http.delete<any>(this.personUrl + "/" + personaParaBorrar.id);
   }
 
 
@@ -91,7 +87,7 @@ export class GetDataServiceService {
   
   getData():Observable<any>
   {
-    return this.lista();
+    return this.getlistaPersonas();
   }
 
   /*

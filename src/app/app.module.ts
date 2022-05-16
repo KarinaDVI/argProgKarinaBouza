@@ -12,7 +12,7 @@ import { EducationExperienceComponent } from './components/education-experience/
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ModalEducationExperienceComponent } from './components/modal-education-experience/modal-education-experience.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GetDataServiceService } from './services/get-data-service.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { FooterComponent } from './components/footer/footer.component';
@@ -24,7 +24,6 @@ import { InterceptorService } from './services/interceptor.service';
 import { EditAboutComponent } from './components/edit-about/edit-about.component';
 import { NewAboutComponent } from './components/new-about/new-about.component';
 import { NewSkillComponent } from './components/new-skill/new-skill.component';
-import { PersonaComponent } from './components/persona/persona.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,13 +41,12 @@ import { PersonaComponent } from './components/persona/persona.component';
     PortfolioComponent,
     EditAboutComponent,
     NewAboutComponent,
-    NewSkillComponent,
-    PersonaComponent
+    NewSkillComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
     NgCircleProgressModule.forRoot({}),
     ReactiveFormsModule,
     FormsModule

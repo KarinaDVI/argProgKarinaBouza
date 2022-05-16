@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { About } from 'src/app/models/About';
+import { Persona } from 'src/app/models/Persona';
 import { GetDataServiceService } from 'src/app/services/get-data-service.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { GetDataServiceService } from 'src/app/services/get-data-service.service
 })
 export class EditAboutComponent implements OnInit {
 
-  aboutMe:About|any=null;
+  aboutMe:Persona|any=null;
 
   constructor(
     private aboutService: GetDataServiceService,
@@ -18,7 +18,7 @@ export class EditAboutComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.aboutService.detailAbout(id).subscribe(
+    this.aboutService.detailPersona(id).subscribe(
       data => {
         this.aboutMe = data;
       }
@@ -27,7 +27,7 @@ export class EditAboutComponent implements OnInit {
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.aboutService.updateAbout(id, this.aboutMe).subscribe(
+    this.aboutService.updatePersona(id, this.aboutMe).subscribe(
       
     );
   }

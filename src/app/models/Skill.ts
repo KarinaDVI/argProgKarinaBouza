@@ -2,7 +2,7 @@
 
 export class Skill{
     
-    id:number;
+    id?:number;
     name:string;
     progress:number;
     confirms:number;
@@ -11,9 +11,9 @@ export class Skill{
     innerStrokeColor:string;
     
 
-    constructor(id:number,name:string,progress:number,confirms:number,
+    constructor(name:string,progress:number,confirms:number,
         confirmsNames:string,outerStrokeColor:string,innerStrokeColor:string){
-        this.id=id;
+        
         this.name=name;
         this.progress=progress;
         this.confirms=confirms;

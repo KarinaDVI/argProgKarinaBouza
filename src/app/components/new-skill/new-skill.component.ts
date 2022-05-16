@@ -13,7 +13,6 @@ export class NewSkillComponent implements OnInit {
 
   constructor(private skillService: GetDataServiceService,
     private router: Router) { }
-  id: number=0;
   name: string = "";
   progress: number = 0;
   confirms: number = 0;
@@ -25,7 +24,7 @@ export class NewSkillComponent implements OnInit {
   }
 
   onCreate(): void {
-    const newSkill = new Skill(this.id,this.name,this.progress,this.confirms,
+    const newSkill = new Skill(this.name,this.progress,this.confirms,
       this.confirmsNames,this.outerStrokeColor,this.innerStrokeColor);
 
     this.skillService.saveSkill(newSkill).subscribe(

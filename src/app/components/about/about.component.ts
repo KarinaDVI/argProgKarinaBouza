@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
-import { About } from 'src/app/models/About';
+import { Persona } from 'src/app/models/Persona';
 import { GetDataServiceService } from 'src/app/services/get-data-service.service';
-
-
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+  //MGCion
+  persona: Persona = new Persona("","",0,"","","","","");
+ 
+  //Este no se usa para agregar..
+  personas:Persona[]=[];
 
- personas:About[]=[];
-
-  constructor(private datosAboutMe:GetDataServiceService) { }
+  constructor(public datosPersona: GetDataServiceService) { }
 
  // personas:any;
   //aboutMeList:any;
@@ -22,26 +23,31 @@ export class AboutComponent implements OnInit {
   //mio
 
   ngOnInit(): void {
-    
-    this.datosAboutMe.getData().subscribe((data:any[])=>{
-      console.log("Datos personales"+ JSON.stringify(data));
-      this.personas=data;})
+  
+    this.datosPersona.getAllPersonas().subscribe(data => {this.persona=data});
+    console.log(this.persona);
+
+    /*
+      Profes:..
+      this.datosPersona.getlistaPersonas().subscribe((data:any[])=>{
+      //console.log("Datos personales"+ JSON.stringify(data));
+      this.personas=data;})*/
   }
  
-  borrarPersonaDeLista(personaParaBorrar: About){
+  borrarPersonaDeLista(personaParaBorrar: Persona): void{
     this.personas= this.personas.filter(p => p.id !== personaParaBorrar.id)
-    let id:number=personaParaBorrar.id;
-    this.datosAboutMe.deleteAbout(id).subscribe();
+    //let id:number=personaParaBorrar.id;
+    this.datosPersona.deletePersona(this.personas, personaParaBorrar).subscribe();
   }
 
-  modificarPersona(personaParaEditar:About){
+  modificarPersona(personaParaEditar:Persona){
     this.personas= this.personas.filter(p => p.id !== personaParaEditar.id)
-    this.datosAboutMe.updateAbout(personaParaEditar.id, this.personas).subscribe();
+    //this.datosPersona.updatePersona(personaParaEditar.id, this.personas).subscribe();
   }
 
   //Metodos del JSON original
-  initJsonData():void{
-    this.datosAboutMe.obtenerDatosJson().subscribe(data=>{
+  initJsonData(){
+    this.datosPersona.obtenerDatosJson().subscribe(data=>{
     console.log("Datos personales"+ JSON.stringify(data));
     
       this.personas=data;
@@ -52,10 +58,10 @@ export class AboutComponent implements OnInit {
 
 
   /*Ver si sirve
-  eliminarAbout(id:number){
-    this.datosAboutMe.delete(id).subscribe(data=>{
+  eliminarPersona(id:number){
+    this.datosPersona.delete(id).subscribe(data=>{
      alert('borrar el '+id);
-    this.datosAboutMe.obtenerDatosJson();
+    this.datosPersona.obtenerDatosJson();
     
   })
   }*/

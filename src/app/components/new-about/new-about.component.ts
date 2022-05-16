@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { About } from 'src/app/models/About';
+import { Persona } from 'src/app/models/Persona';
 import { GetDataServiceService } from 'src/app/services/get-data-service.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class NewAboutComponent implements OnInit {
 
   constructor( private aboutService:GetDataServiceService, 
                private router:Router) { }
-  id:number=0;
+  
   nombre:string="";
   apellido:string="";
   edad:number=0;
@@ -21,15 +21,15 @@ export class NewAboutComponent implements OnInit {
   image:string="";
   company:string="";
   position:string="";
-  aboutMe:string="";
+  abouts:string="";
   
   ngOnInit(): void {
   }
 
   onCreate(): void  {
-  const aboutMe=new About(this.id,this.nombre,this.apellido,this.edad,this.seniority,
-    this.image,this.company,this.position,this.aboutMe);
-  this.aboutService.saveAbout(aboutMe).subscribe(
+  const persona=new Persona(this.nombre,this.apellido,this.edad,this.seniority,
+    this.image,this.company,this.position,this.abouts);
+  this.aboutService.savePersona(persona).subscribe(
     data=>{
       alert("Acerca de mi creado");
       this.router.navigate(['/']);
