@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { Persona } from 'src/app/models/Persona';
+import { AboutServiceService } from 'src/app/services/about-service.service';
 import { GetDataServiceService } from 'src/app/services/get-data-service.service';
 @Component({
   selector: 'app-about',
@@ -9,61 +9,34 @@ import { GetDataServiceService } from 'src/app/services/get-data-service.service
 })
 export class AboutComponent implements OnInit {
   //MGCion
-  persona: Persona = new Persona("","",0,"","","","","");
  
-  //Este no se usa para agregar..
-  personas:Persona[]=[];
+  personasList:Persona[] = [];
 
-  constructor(public datosPersona: GetDataServiceService) { }
-
- // personas:any;
-  //aboutMeList:any;
-  //Profe:
- // miPortfolio:any;
-  //mio
+  constructor(public datosPersona: AboutServiceService) { }
 
   ngOnInit(): void {
-  
-    this.datosPersona.getAllPersonas().subscribe(data => {this.persona=data});
-    console.log(this.persona);
-
-    /*
-      Profes:..
-      this.datosPersona.getlistaPersonas().subscribe((data:any[])=>{
-      //console.log("Datos personales"+ JSON.stringify(data));
-      this.personas=data;})*/
+    this.getAllPersons();
   }
- 
+
+  getAllPersons():void{
+    this.datosPersona.getAllPersons().subscribe((data:any[])=>{
+      console.log(data);
+      this.personasList=data;
+      //this.color();
+     //this.skillColor(<number>this.skillsList.progress);
+    })
+    }
+
+  //A probar despues:
   borrarPersonaDeLista(personaParaBorrar: Persona): void{
-    this.personas= this.personas.filter(p => p.id !== personaParaBorrar.id)
-    //let id:number=personaParaBorrar.id;
-    this.datosPersona.deletePersona(this.personas, personaParaBorrar).subscribe();
+    this.personasList= this.personasList.filter(p => p.id !== personaParaBorrar.id)
+    this.datosPersona.deletePersona(this.personasList, personaParaBorrar).subscribe();
   }
 
   modificarPersona(personaParaEditar:Persona){
-    this.personas= this.personas.filter(p => p.id !== personaParaEditar.id)
-    //this.datosPersona.updatePersona(personaParaEditar.id, this.personas).subscribe();
+    this.personasList= this.personasList.filter(p => p.id !== personaParaEditar.id)
   }
 
-  //Metodos del JSON original
-  initJsonData(){
-    this.datosPersona.obtenerDatosJson().subscribe(data=>{
-    console.log("Datos personales"+ JSON.stringify(data));
-    
-      this.personas=data;
-      //profe:
-      //this.miPortfolio=data[0];
-    })
-}
 
-
-  /*Ver si sirve
-  eliminarPersona(id:number){
-    this.datosPersona.delete(id).subscribe(data=>{
-     alert('borrar el '+id);
-    this.datosPersona.obtenerDatosJson();
-    
-  })
-  }*/
 }
 

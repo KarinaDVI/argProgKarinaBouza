@@ -9,19 +9,19 @@ export class Persona{
     position:string;
     abouts:string;
     
-    constructor(nombre:string,apellido:string,edad:number,seniority:string,
-    urlimage:string,company:string,position:string,abouts:string){
+    constructor(nombre: string, apellido: string, edad:number, seniority: string,
+    urlimage: string, company: string, position: string, abouts: string) {
         
-        this.nombre=nombre;
-        this.apellido=apellido;
-        this.edad=edad;
-        this.seniority=seniority;
-        this.urlimage=urlimage;
-        this.company=company;
-        this.position=position;
-        this.abouts=abouts;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.seniority = seniority;
+        this.urlimage = urlimage;
+        this.company = company;
+        this.position = position;
+        this.abouts = abouts;
     }
-    edadMia(): number{
+    /*edadMia(): number{
         let currentTime = new Date()
         let month = currentTime. getMonth()
         let day = currentTime.getDay()
@@ -30,5 +30,5 @@ export class Persona{
             
         }else{this.edad=this.edad}
         return this.edad
-    }
+    }*/
 }

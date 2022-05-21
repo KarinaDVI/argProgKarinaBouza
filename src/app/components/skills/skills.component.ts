@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Skill } from 'src/app/models/Skill';
 import { GetDataServiceService } from 'src/app/services/get-data-service.service';
+import { SkillServiceService } from 'src/app/services/skill-service.service';
 
 @Component({
   selector: 'app-skills',
@@ -12,23 +13,10 @@ export class SkillsComponent implements OnInit {
   radius:number=100;
   skillsList:Skill[]=[];
 
-  constructor(private skillsData: GetDataServiceService) { }
+  constructor(private skillsData: SkillServiceService) { }
     
   ngOnInit():void {
     this.cargarSkill();
-    //Este es la ruta anterior que viene del json:
-    //this.skillsData.obtenerDatos().subscribe(data=>{
-  
-    /*
-    this.skillsData.lista().subscribe(data=>{
-    console.log(data);
-    //this.skillsList=data.aptitudes;
-    this.skillsList=data;
-    //this.color();
-   //this.skillColor(<number>this.skillsList.progress);
-  })
-  */
-
   }
    
   outerStrokeColor:string=this.color();
@@ -40,12 +28,19 @@ export class SkillsComponent implements OnInit {
   }
 
 cargarSkill():void{
-  this.skillsData.listaSkill().subscribe((data:any[])=>{
+  this.skillsData.getAllSkill().subscribe((data:any[])=>{
     console.log(data);
     this.skillsList=data;
-    //this.color();
-   //this.skillColor(<number>this.skillsList.progress);
   })
+  }
+
+  borrarSkillDeLista(skillParaBorrar: Skill): void{
+    this.skillsList= this.skillsList.filter(p => p.id !== skillParaBorrar.id)
+    this.skillsData.deleteSkill(this.skillsList, skillParaBorrar).subscribe();
+  }
+
+  modificarPersona(skillParaEditar:Skill){
+    this.skillsList= this.skillsList.filter(p => p.id !== skillParaEditar.id)
   }
 
   //Dejar esta función para color picker en caso de necesidad

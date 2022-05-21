@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Persona } from 'src/app/models/Persona';
-import { GetDataServiceService } from 'src/app/services/get-data-service.service';
+import { AboutServiceService } from 'src/app/services/about-service.service';
 
 @Component({
   selector: 'app-edit-about',
@@ -10,24 +10,25 @@ import { GetDataServiceService } from 'src/app/services/get-data-service.service
 })
 export class EditAboutComponent implements OnInit {
 
-  aboutMe:Persona|any=null;
+  aboutMe:any=null;
 
   constructor(
-    private aboutService: GetDataServiceService,
-    private activatedRoute: ActivatedRoute) { }
+    private aboutService: AboutServiceService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.aboutService.detailPersona(id).subscribe(
-      data => {
+    this.aboutService.getPersona(id).subscribe(
+      (data) => {
         this.aboutMe = data;
-      }
-    )
+      });
+    //this.router.navigate(['/']);
   }
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.aboutService.updatePersona(id, this.aboutMe).subscribe(
+    this.aboutService.updatePersona(id, this.aboutMe!).subscribe(
       
     );
   }

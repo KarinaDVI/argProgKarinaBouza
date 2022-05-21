@@ -9,8 +9,8 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="edad">Edad</label>
-                        <input type="number" class="form-control" id="edad" name="edad" 
+                    <label for="edad">Progreso</label>
+                        <input type="number" class="form-control" id="progress" name="progress" 
                         [(ngModel)]="progress" >
                     
                 </div>
@@ -22,18 +22,19 @@
                 </div>
             
                 <div class="form-group">
-                    <label for="confirmsNames">personas y  </label>
+                    <label for="confirmsNames">personas:   </label>
                         <input type="text" class="form-control" id="confirmsNames" name="confirmsNames" 
                         [(ngModel)]="confirmsNames" >
                 </div>
                 <div class="form-group">
                     <label for="confirmsNames">circulo externo</label>
-                        <input type="color" class="form-control" id="outerStrokeColor" name="outerStrokeColor" 
+                        <input id=#selectOuter type="color" class="form-control" id="outerStrokeColor" name="outerStrokeColor" 
                         [(ngModel)]="outerStrokeColor" >
                 </div>
+
                 <div class="form-group">
                     <label for="confirmsNames">Circulo interno</label>
-                        <input type="color" class="form-control" id="innerStrokeColor" name="innerStrokeColor" 
+                        <input id=#selectInner type="color" class="form-control" id="innerStrokeColor" name="innerStrokeColor" value="innerStrokeColor"
                         [(ngModel)]="innerStrokeColor" >
                 </div>
 

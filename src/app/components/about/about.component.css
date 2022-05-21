@@ -9,11 +9,7 @@ div{
     max-width: max-content;
     
 }
-/*#nombre{
-    font-weight:bold;
-    margin-top:5%;
-    
-}*/
+
 
 @media(min-width:576px){
     #fotoPerfil{ 
@@ -29,6 +25,7 @@ div{
         margin-top:5%;
     }
 }
+
 @media(max-width:575px){
     #fotoPerfil{ 
         position: relative;
