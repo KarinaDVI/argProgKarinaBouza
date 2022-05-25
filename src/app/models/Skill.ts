@@ -10,6 +10,7 @@ export class Skill{
     outerStrokeColor:string;
     innerStrokeColor:string;
     
+    
 
     constructor(name:string,progress:number,confirms:number,
         confirmsNames:string,outerStrokeColor:string,innerStrokeColor:string){

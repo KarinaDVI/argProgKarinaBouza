@@ -12,7 +12,7 @@ import { SkillServiceService } from 'src/app/services/skill-service.service';
 export class EditSkillComponent implements OnInit {
 
   //skill: Skill|any = null;
-  listSkill:any=null;
+  listSkill: Skill | undefined;
   
 
   constructor(
@@ -25,16 +25,24 @@ export class EditSkillComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params['id'];
     this.skillService.getSkill(id).subscribe(
       (data) => {
-        this.listSkill = data;
+        this.listSkill=data;
       });
-      //this.router.navigate(['/']);
   }
+      
+
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
     this.skillService.updateSkill(id, this.listSkill!).subscribe(
-      
+
     );
   }
 
+  /*
+  modificarSkill(id:number){
+    //this.listSkill= this.listSkill.filter(p => p.id !== skillParaEditar.id)
+    this.skillService.modificarSkill(this.listSkill.id, this.listSkill ).subscribe();
+  }*/
+
+  
 }

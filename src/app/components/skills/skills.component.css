@@ -4,12 +4,15 @@
     background-color:rgb(107, 177, 246);
     border-radius: 100px;
     border-style: ridge;
+    
 }
 .card{
 
     padding:40px;
     background-color:dodgerblue;
     padding-left: -1rem;
+    margin-right: -12px;
+    
 }
 circle-progress{
     align-self:center;
@@ -26,9 +29,7 @@ circle-progress{
     align-items: center;
 }
 
-.colorPicker{
-    color:outerStrokeColor;
-}
+
 
 
 

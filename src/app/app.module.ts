@@ -27,6 +27,12 @@ import { EditAboutComponent } from './components/edit-about/edit-about.component
 import { NewAboutComponent } from './components/new-about/new-about.component';
 import { NewSkillComponent } from './components/new-skill/new-skill.component';
 import { EditSkillComponent } from './components/edit-skill/edit-skill.component';
+import { ModalEditSkillComponent } from './components/modal-edit-skill/modal-edit-skill.component';
+import { SwitchModalSkillService } from './services/switch-modal-skill.service';
+import { ModalEditEducationComponent } from './components/modal-edit-education/modal-edit-education.component';
+import { NewEducationComponent } from './components/new-education/new-education.component';
+import { EditEducationComponent } from './components/edit-education/edit-education.component';
+import { ModalComponent } from './components/modal/modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +51,11 @@ import { EditSkillComponent } from './components/edit-skill/edit-skill.component
     NewAboutComponent,
     NewSkillComponent,
     EditSkillComponent,
+    ModalEditSkillComponent,
+    ModalEditEducationComponent,
+    NewEducationComponent,
+    EditEducationComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

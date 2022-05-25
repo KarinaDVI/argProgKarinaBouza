@@ -14,6 +14,7 @@ export class NewSkillComponent implements OnInit {
 
   constructor(private skillService:SkillServiceService,
     private router: Router) { }
+    
   name: string = "";
   progress: number = 0;
   confirms: number = 0;

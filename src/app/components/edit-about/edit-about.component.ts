@@ -10,7 +10,7 @@ import { AboutServiceService } from 'src/app/services/about-service.service';
 })
 export class EditAboutComponent implements OnInit {
 
-  aboutMe:any=null;
+  aboutMe:any;
 
   constructor(
     private aboutService: AboutServiceService,
@@ -29,7 +29,10 @@ export class EditAboutComponent implements OnInit {
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
     this.aboutService.updatePersona(id, this.aboutMe!).subscribe(
-      
+      /*agregado by me
+      (data) => {
+        this.aboutMe = data;}
+        */
     );
   }
 

@@ -1,25 +1,31 @@
 
 <div class="row">
     <h1>Educacion y Experiencia Laboral</h1>
+
+    <div class="text-left col-xs-1 col-sm-5 col-md-5 col-lg-4 padding">
+        <button class="btn btn-outline-primary mb-3" routerLink="/educationNuevo"> Nuevo</button>
+    </div>
     <div class="border">
 
    <div class="col-lg-1"></div>
     <div class="col-lg-11">
         
         <ul class="item-list">
-            <li *ngFor="let education of educationList">
+            <li *ngFor="let education of listEducation">
                 <div class="data-container">
                 <div class="list-info">
                     <div>
+                        <h3>{{education.urlimg}}</h3>
                         <h3>Educación: {{education.school}} </h3>
                         <h3>Título: {{education.title}} </h3> - 
-                        <h3>( {{education.start}} - {{education.end}} ) </h3>
+                        <h3>( {{education.starts}} - {{education.ends}} ) </h3>
+                        <h3>{{education.status}}</h3>
                         
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-info">Agregar</button>
-                        <button type="button" class="btn btn-warning">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn btn-warning" routerLink="/educationEdit/{{education.id}}">Editar</button>
+                        <button type="button" class="btn btn-danger" (click)="borrarEducationDeLista(education)">Eliminar</button>
                       </div>   
                 
                 </div>

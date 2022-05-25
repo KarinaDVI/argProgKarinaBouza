@@ -10,6 +10,7 @@ import { GetDataServiceService } from 'src/app/services/get-data-service.service
 export class AboutComponent implements OnInit {
   //MGCion
  
+  //personasList:any=null;
   personasList:Persona[] = [];
 
   constructor(public datosPersona: AboutServiceService) { }

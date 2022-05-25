@@ -1,13 +1,18 @@
 export class Educa {
     id?:number;
-    yearBegin:String;
-    yearEnd:String;
-    school:String;
-    status:String;
+    title:string;
+    starts:number;
+    ends:number;
+    urlimg:string;
+    school:string;
+    status:string;
 
-    constructor(yearBegin:String,yearEnd:String,school:String,status:String){
-        this.yearBegin=yearBegin;
-        this.yearEnd=yearEnd;
+
+    constructor(title:string,starts:number,ends:number,urlimg:string,school:string,status:string){
+        this.title=title;
+        this.starts=starts;
+        this.ends=ends;
+        this.urlimg=urlimg;
         this.school=school;
         this.status=status;
 

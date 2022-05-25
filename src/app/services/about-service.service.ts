@@ -29,7 +29,7 @@ export class AboutServiceService {
     return this.http.post<any>(this.aboutUrl + '/',newPersona);
   }
   public getPersona(id: number):Observable<Persona> {
-    return this.http.get<Persona>(this.aboutUrl + `/${id}`);
+    return this.http.get<Persona>(this.aboutUrl + `/one/${id}`);
   }
   /*public getByName(nombre:String):Observable<Persona>{
     return this.http.get<Persona>(this.aboutUrl + `/${nombre}`);

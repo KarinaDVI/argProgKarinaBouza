@@ -31,15 +31,20 @@ export class SkillServiceService {
   }
 
   public getSkill(id: number):Observable<Skill> {
-    return this.http.get<Skill>(this.skillUrl + `/${id}`);
+    return this.http.get<Skill>(this.skillUrl + `/one/${id}`);
   }
  
   public updateSkill(id:number,skill:Skill):Observable<any>{
     return this.http.put<any>(this.skillUrl + `/edit/${id}`,skill);
   }
+  /*
+  public modificarSkill( skillParaEditar.id, skillsList: any ): Observable<any> {
+    skillsList.filter(p => p.id !== skillParaEditar.id)
+    return this.http.put<any>(this.skillUrl + "/edit/" + skillParaEditar.id, skillParaEditar);
+  }*/
 
-  public deleteSkill(skillList: Skill[], skillParaBorrar: Skill ): Observable<Skill> {
-    skillList.filter(p => p.id !== skillParaBorrar.id)
+  public deleteSkill(skillsList: Skill[], skillParaBorrar: Skill ): Observable<Skill> {
+    skillsList.filter(p => p.id !== skillParaBorrar.id)
     return this.http.delete<any>(this.skillUrl + "/" + skillParaBorrar.id);
   }
 
