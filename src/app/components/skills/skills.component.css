@@ -29,7 +29,9 @@ circle-progress{
     align-items: center;
 }
 
-
+.flotante{
+    position:sticky;
+}
 
 
 

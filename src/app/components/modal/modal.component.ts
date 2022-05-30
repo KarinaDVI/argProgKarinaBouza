@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-import {NGbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
+import { Skill } from 'src/app/models/Skill';
 
 @Component({
   selector: 'app-modal',
@@ -9,9 +8,11 @@ import {NGbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent implements OnInit {
 
-  constructor(private modal:NGbModal) { }
+  @Input() skill:Skill|any=null;
+  constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

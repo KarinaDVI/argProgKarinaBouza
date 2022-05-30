@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Experience } from 'src/app/models/Experience';
+import { ExperienceService } from 'src/app/services/experience.service';
 import { GetDataServiceService } from 'src/app/services/get-data-service.service';
 import { EducationExperienceComponent } from '../education-experience/education-experience.component';
 
@@ -7,17 +10,37 @@ import { EducationExperienceComponent } from '../education-experience/education-
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.css']
 })
-export class ExperienceComponent implements OnInit {
 
-  constructor(private datosExpe:GetDataServiceService) { }
+  export class ExperienceComponent implements OnInit {
 
-    experienceList:any;
-
-  ngOnInit(): void {
-    this.datosExpe.obtenerDatosJson().subscribe(data=>{
-      console.log(data);
-      this.experienceList=data.experience});
-    }
-  }
+    listExperience:Experience[]=[];
+      
+      constructor(private datosEduExpe:GetDataServiceService,
+                  private expeService:ExperienceService,
+                  private activatedRoute: ActivatedRoute,
+                  private router: Router
+                  ) { }
+      
+      
+      //educationList:any;
+      //educa = new Educa("2008","#","EEMNº2 BR","finalizado");
+    
+      ngOnInit(): void {
+        this.cargarEducation();
+    
+      }
+    
+      cargarEducation():void{
+        this.expeService.getAllExperience().subscribe((data:any[])=>{
+          console.log(data);
+          this.listExperience=data;
+        })
+        }
+        borrarExperienceDeLista(experienceParaBorrar: Experience): void{
+          this.listExperience= this.listExperience.filter(p => p.id !== experienceParaBorrar.id)
+          this.expeService.deleteExperience(this.listExperience, experienceParaBorrar).subscribe();
+        }
+      }
+    
 
 

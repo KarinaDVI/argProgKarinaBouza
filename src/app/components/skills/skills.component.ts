@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Skill } from 'src/app/models/Skill';
-import { GetDataServiceService } from 'src/app/services/get-data-service.service';
+//import { ActivatedRoute, Router } from '@angular/router';
 import { SkillServiceService } from 'src/app/services/skill-service.service';
 import { SwitchModalSkillService } from 'src/app/services/switch-modal-skill.service';
 
@@ -14,9 +14,16 @@ export class SkillsComponent implements OnInit {
   radius:number=100;
   modalSwitch: boolean=false;
   skillsList:Skill[]=[];
-
-  constructor(private skillsData: SkillServiceService, 
-              private modalSS : SwitchModalSkillService) { }
+  /*skillEdit:any=null;
+  
+  listSkill: Skill | undefined;
+  */
+  constructor(private skillsDataService: SkillServiceService, 
+              private modalSS : SwitchModalSkillService
+              
+              //private activatedRoute: ActivatedRoute,
+              //private router: Router
+              ) { }
     
   ngOnInit():void {
 
@@ -34,7 +41,7 @@ export class SkillsComponent implements OnInit {
   }
 
 cargarSkill():void{
-  this.skillsData.getAllSkill().subscribe((data:any[])=>{
+  this.skillsDataService.getAllSkill().subscribe((data:any[])=>{
     console.log(data);
     this.skillsList=data;
   })
@@ -42,14 +49,21 @@ cargarSkill():void{
 
   borrarSkillDeLista(skillParaBorrar: Skill): void{
     this.skillsList= this.skillsList.filter(p => p.id !== skillParaBorrar.id)
-    this.skillsData.deleteSkill(this.skillsList, skillParaBorrar).subscribe();
+    this.skillsDataService.deleteSkill(this.skillsList, skillParaBorrar).subscribe();
   }
 
   
-  modificarPersona(skillParaEditar:Skill){
-    this.skillsList= this.skillsList.filter(p => p.id !== skillParaEditar.id)
-    //this.skillsData.modificarSkill(this.skillsList, skillParaEditar).subscribe();
+  /*
+  modificarSkill(skillParaEditar:Skill){
+    this.skillEdit= this.skillsList.filter(p => p.id !== skillParaEditar.id)
+    this.skillsDataService.updateSkill( skillParaEditar.id!,this.skillEdit).subscribe();
   }
+
+  onUpdate(): void {
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.skillsDataService.updateSkill(id, this.listSkill!).subscribe();
+    
+  }*/
 
   openModal(){
     this.modalSwitch = true;

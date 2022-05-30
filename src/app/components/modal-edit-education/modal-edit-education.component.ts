@@ -10,16 +10,8 @@ import { EducationService } from 'src/app/services/education.service';
 })
 export class ModalEditEducationComponent implements OnInit {
 
-  //skill: Skill|any = null;
   listEducation: Educa | undefined;
-  /*
-  id:string=0;
-  title:string="";
-  yearBegin:string="";
-  yearEnd:string="";
-  school:string="";
-  status="";
-*/
+
 
   constructor(
     private educationService: EducationService,
@@ -39,19 +31,8 @@ export class ModalEditEducationComponent implements OnInit {
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
     this.educationService.updateEducation(id, this.listEducation!).subscribe(
-      
     );
+    
   }
-  /*
-  editEdu(education: Educa){
-    this.id=education.id;
-    this.title=education.title;
-    this.yearBegin=education.yearBegin;
-    this.yearEnd=education.yearEnd;
-    this.school=education.school;
-    this.status=education.status;
-    this.educationService.updateEducation(this.id, education).subscribe((education)) => {});
-    this.modalService.hide();
-  }
-  */
+ 
 }

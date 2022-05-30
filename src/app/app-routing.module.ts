@@ -8,6 +8,10 @@ import { NewAboutComponent } from './components/new-about/new-about.component';
 import { NewEducationComponent } from './components/new-education/new-education.component';
 import { NewSkillComponent } from './components/new-skill/new-skill.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { EditExperienceComponent } from './components/edit-experience/edit-experience.component';
+import { NewExperienceComponent } from './components/new-experience/new-experience.component';
+import { NewProjectComponent } from './components/new-project/new-project.component';
+import { EditProjetcComponent } from './components/edit-projetc/edit-projetc.component';
 //import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 
@@ -23,6 +27,10 @@ const routes: Routes = [
   {path:'skillEdit/:id',component: EditSkillComponent},
   {path:'educationNuevo',component: NewEducationComponent},
   {path:'educationEdit/:id',component: ModalEditEducationComponent},
+  {path:'experienceEdit/:id',component: EditExperienceComponent},
+  {path:'experienceNuevo',component: NewExperienceComponent},
+  {path:'projectNuevo',component: NewProjectComponent},
+  {path:'projectEdit/:id',component: EditProjetcComponent},
   {path:'modal',component: ModalComponent},
   //{path:'experienceEdit/:id',component: EditSkillComponent},
   //{path:'',redirectTo:'portfolio',pathMatch:'full'},

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GetDataServiceService } from 'src/app/services/get-data-service.service';
+import { Project } from 'src/app/models/Project';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -8,14 +9,25 @@ import { GetDataServiceService } from 'src/app/services/get-data-service.service
 })
 export class ProjectsComponent implements OnInit {
   
-  constructor(private proyectData:GetDataServiceService) { }
+  projectList:Project[]=[];
 
-  proyectsList:any;
+  constructor(private projectService: ProjectService) { }
+    
+  ngOnInit():void {
+    this.cargarProject();
 
-  ngOnInit(): void {
-    this.proyectData.obtenerDatosJson().subscribe(data=>{
-      console.log(data);
-        this.proyectsList=data.achivements});
+  }
+
+cargarProject():void{
+  this.projectService.getAllProject().subscribe((data:any[])=>{
+    console.log(data);
+    this.projectList=data;
+  })
+  }
+
+  borrarProjectDeLista(projectParaBorrar: Project): void{
+    this.projectList= this.projectList.filter(p => p.id !== projectParaBorrar.id)
+    this.projectService.deleteProject(this.projectList, projectParaBorrar).subscribe();
   }
 
 }

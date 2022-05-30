@@ -12,8 +12,6 @@ import { EducationExperienceComponent }
 from './components/education-experience/education-experience.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { ModalEducationExperienceComponent } 
-from './components/modal-education-experience/modal-education-experience.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } 
 from '@angular/common/http';
 import { GetDataServiceService } from './services/get-data-service.service';
@@ -33,6 +31,10 @@ import { ModalEditEducationComponent } from './components/modal-edit-education/m
 import { NewEducationComponent } from './components/new-education/new-education.component';
 import { EditEducationComponent } from './components/edit-education/edit-education.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { EditExperienceComponent } from './components/edit-experience/edit-experience.component';
+import { NewExperienceComponent } from './components/new-experience/new-experience.component';
+import { EditProjetcComponent } from './components/edit-projetc/edit-projetc.component';
+import { NewProjectComponent } from './components/new-project/new-project.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,6 @@ import { ModalComponent } from './components/modal/modal.component';
     EducationExperienceComponent,
     SkillsComponent,
     ProjectsComponent,
-    ModalEducationExperienceComponent,
     FooterComponent,
     LoginComponent,
     EditAboutComponent,
@@ -55,7 +56,10 @@ import { ModalComponent } from './components/modal/modal.component';
     ModalEditEducationComponent,
     NewEducationComponent,
     EditEducationComponent,
-    ModalComponent,
+    EditExperienceComponent,
+    NewExperienceComponent,
+    EditProjetcComponent,
+    NewProjectComponent
   ],
   imports: [
     BrowserModule,

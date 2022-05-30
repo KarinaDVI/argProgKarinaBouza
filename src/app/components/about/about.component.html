@@ -1,10 +1,11 @@
 
 <div class="row">
     
-
+    <h1 class="nuevo"><button class="btn btn-info mb-1" routerLink="/aboutNuevo"> Nuevo</button>
+    </h1>
     <div class="row" *ngFor="let persona of personasList">
-        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-            <img id="fotoperfil" src={{persona.urlimage}} class="img-fluid rounded-circle" alt="Responsive image">
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 ">
+            <img id="fotoperfil" [src]="persona.urlimage" class="fotoperfil img-fluid rounded-circle" >
         </div>
         <div id="nombre" class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
 
@@ -26,7 +27,5 @@
             </span>
         </div>
     </div>
-    <span class="flex">
-        <button class="btn btn-outline-primary " routerLink="/aboutNuevo"> Nuevo</button>
-    </span>
+
 </div>

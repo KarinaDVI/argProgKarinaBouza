@@ -1,9 +1,9 @@
-img{
-    width:100%;
-}
+
 .row{
     padding:30px;
 }
+
+
 div{
     background-color:dodgerblue;
 }
@@ -11,33 +11,47 @@ div{
     background-color:dodgerblue;
 }
 
-
 @media(min-width:576px){
-    #fotoPerfil{ 
-        position: relative;
-        min-width:7em;
+    img{ 
+        position: sticky;
+        margin-top: -260px;
+        margin-bottom:40px;
+        top: -260px;
+        min-width:20%;
+        max-width: 100%;
         border-radius:100%;
-        box-shadow: 3px 3px 3px rgb(240, 241, 236);
+        box-shadow: 3px 3px 40px rgb(225, 235, 184)!important;
         left: -4%;
-        top: -45%;
+        
     }
     #nombre{
         font-weight:bold;
         margin-top:5%;
     }
+    .nuevo{
+        margin-left:45%;
+        float:inline-end;
+    }
 }
 
 @media(max-width:575px){
-    #fotoPerfil{ 
-        position: relative;
-        width:35%;
+    img{ 
+        position: sticky;
+        margin-top: -260px;
+        top: -260px;
+        min-width:30%;
+        max-width: 40%;
         border-radius:100%;
         box-shadow: 3px 3px 3px rgb(234, 235, 233);
         left: 3%;
-        top: -60%;
+        
     }
     #nombre{
         font-weight:bold;
-        margin-top:-20%;
+        margin-top:-0%;
+    }
+    .nuevo{
+        margin-left:45%;
+       float:inline-end;
     }
 }
