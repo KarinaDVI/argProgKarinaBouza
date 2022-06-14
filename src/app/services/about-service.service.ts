@@ -35,7 +35,7 @@ export class AboutServiceService {
     return this.http.get<Persona>(this.aboutUrl + `/${nombre}`);
   }*/
 
-  public updatePersona(id:number,persona:Persona):Observable<any>{
+  public updatePersona(id:any|number,persona:Persona):Observable<any>{
     return this.http.put<any>(this.aboutUrl + `/edit/${id}`,persona);
   }
   

@@ -14,6 +14,15 @@ import { GetDataServiceService } from 'src/app/services/get-data-service.service
 export class EducationExperienceComponent implements OnInit {
 
 listEducation:Educa[]=[];
+editEducaList: Educa | any;
+
+title: string="";
+starts: number=0;
+ends: number=0;
+school: string="";
+status: string="";
+urlimg: string="";
+
   
   constructor(private datosEduExpe:GetDataServiceService,
               private educationService:EducationService,
@@ -21,9 +30,6 @@ listEducation:Educa[]=[];
               private router: Router
               ) { }
   
-  
-  //educationList:any;
-  //educa = new Educa("2008","#","EEMNº2 BR","finalizado");
 
   ngOnInit(): void {
     this.cargarEducation();
@@ -36,9 +42,46 @@ listEducation:Educa[]=[];
       this.listEducation=data;
     })
     }
+
+    getEducationEdit(education: Educa): void {
+      //const id = this.activatedRoute.snapshot.params['id'];
+      
+      this.educationService.getEducation(education.id!).subscribe(
+        (data) => {
+          this.editEducaList = data;
+        });
+        
+    }
+
     borrarEducationDeLista(educationParaBorrar: Educa): void{
       this.listEducation= this.listEducation.filter(p => p.id !== educationParaBorrar.id)
       this.educationService.deleteEducation(this.listEducation, educationParaBorrar).subscribe();
+    }
+
+    onUpdate(): void {
+      //const id = this.activatedRoute.snapshot.params['id'];
+      const id = this.editEducaList.id
+      this.educationService.updateEducation(id, this.editEducaList).subscribe(
+      );
+      window.location.reload();
+    }
+
+    onCreate(): void {
+      const newEducation = new Educa(this.title, this.starts, this.ends, this.school,
+        this.status, this.urlimg);
+  
+      this.educationService.saveEducation(newEducation).subscribe(
+        data => {
+          alert("Education creada");
+          //this.router.navigate(['/']);
+        }
+      )
+      window.location.reload();
+    }
+
+    modificarEducacion(educaId: number) {
+      this.educationService.updateEducation(educaId, this.editEducaList).subscribe();
+      window.location.reload();
     }
 
 }

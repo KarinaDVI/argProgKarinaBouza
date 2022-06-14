@@ -34,7 +34,7 @@ export class SkillServiceService {
     return this.http.get<Skill>(this.skillUrl + `/one/${id}`);
   }
  
-  public updateSkill(id:number,skill:Skill):Observable<any>{
+  public updateSkill(id:any|number,skill:Skill):Observable<any>{
     return this.http.put<any>(this.skillUrl + `/edit/${id}`,skill);
   }
   /*
@@ -47,5 +47,6 @@ export class SkillServiceService {
     skillsList.filter(p => p.id !== skillParaBorrar.id)
     return this.http.delete<any>(this.skillUrl + "/" + skillParaBorrar.id);
   }
+  
 
 }

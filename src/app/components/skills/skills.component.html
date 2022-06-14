@@ -1,89 +1,140 @@
 
-<div class="card">
+<!--Visualizacion-->
+<div class="card" >
     <div class="card-body">
         <h1>
-            Hard & Soft Skills  <button class="btn btn-info mb-1" routerLink="/skillNuevo"> Nuevo</button>
+           Hard & Soft Skills  <!--<button class="btn btn-info mb-1" routerLink="/skillNuevo"> Nuevo</button>-->
+           <button class="btn btn-info mb-1" data-bs-target="#newSkill" data-bs-toggle="modal"> Nuevo</button>
         </h1>
         <div class="row">
-            <div class="text-center col-xs-1 col-sm-5 col-md-5 col-lg-4 padding" *ngFor="let skill of skillsList ; let i=index">
-                <circle-progress class="circle" 
-                [title]="skill.name" 
-                [titleColor]="'white'" 
-                [titleFontSize]="'1em'"
-                [showSubtitle]="false" 
-                [showUnits]="false" 
-                [percent]="skill.progress" 
-                [radius]="90" 
-                [outerStrokeWidth]="16"
-                [innerStrokeWidth]="8" 
-                [outerStrokeColor]="skill.outerStrokeColor"
-                [innerStrokeColor]="skill.innerStrokeColor" 
-                [animation]="true" 
-                [animationDuration]="300">
+            <div class="text-center col-xs-1 col-sm-5 col-md-5 col-lg-4 padding"
+                *ngFor="let skill of skillsList ; let i=index">
+                <circle-progress class="circle" [title]="skill.name" [titleColor]="'white'" [titleFontSize]="'1em'"
+                    [showSubtitle]="false" [showUnits]="false" [percent]="skill.progress" [radius]="90"
+                    [outerStrokeWidth]="16" [innerStrokeWidth]="8" [outerStrokeColor]="skill.outerStrokeColor"
+                    [innerStrokeColor]="skill.innerStrokeColor" [animation]="true" [animationDuration]="300">
 
                 </circle-progress>
-                <button class="btn btn-warning mb-3" routerLink="/skillEdit/{{skill.id}}">Editar</button>
-                <button class="btn btn-danger mb-3" (click)="borrarSkillDeLista(skill)">Eliminar</button>
                 
-                <!--<button type="btn btn-secundary" data-bs-toggle="modal" 
-                data-bs-target="#contenido-modal" (click)="modificarSkill(skill)">Launch
-                    modal</button>-->
-                <button type="btn btn-secundary" data-bs-toggle="modal" 
-                data-bs-target="#contenido-modal">Launch
-                    modal</button>
-            </div>
-        </div>
-
-            <div class="modal fade" id="contenido-modal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content"></div>
-                    <div class="modal-header">
-                        <div class="modal-title">Título del modal</div>
-                        <button class="close" data-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-4">
-                                    <app-edit-skill></app-edit-skill>
-                                </div>
-                                <div class="col-5">
-                                </div>
-                                <div class="col-6">
-                                </div>
-                                <div class="col-12">
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing eli
-                            t. Ipsam aut recusandae, a iste mollitia, adipisci rem dolores
-                            culpa pariatur ad ullam
-                            delectus temporibus ea iusto, corrupti quia quisqua
-                            m quis et?</p>
-                            
-                            <div>
-
-                                <app-edit-skill></app-edit-skill>
-                            
-                            </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button class="btn btn-prymary">Guardar</button>
-                        <!--<button class="btn btn-prymary mb-3" (click)="modificarSkill(skill.id)">Modificar</button>-->
-                    </div>
+                <h1>Confirman {{skill.confirms}} personas: {{skill.confirmsNames}}</h1>
+                <div>
+                <button class="btn btn-danger mb-3" (click)="borrarSkillDeLista(skill)">Eliminar</button>
+                <button class="btn btn-warning mb-3" (click)="getSkillEdit(skill)" data-bs-target="#editSkill" data-bs-toggle="modal"  
+                    >Edicion</button>
                 </div>
             </div>
+
         </div>
-
-    
-<div >
-    <app-modal-edit-skill></app-modal-edit-skill>
-</div>
-<div *ngIf="modalSwitch == true">
-
-    <app-modal-edit-skill></app-modal-edit-skill>
-
+    </div>
 </div>
 
+<!--Edicion-->
+<div class="modal fade" id="editSkill" tabindex="-1" role="dialog"
+    aria-labelledby="editSkillLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSkillLabel">Editar</h5>
+            </div>
+            <div *ngIf="listSkill" class="modal-body">
+                <form novalidate #f="ngForm">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="listSkill.name"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="progress">Progreso</label>
+                        <input type="number" class="form-control" id="progress" name="progress"
+                            [(ngModel)]="listSkill.progress" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirms">Confirman</label>
+                        <input type="number" class="form-control" id="confirms" name="confirms"
+                            [(ngModel)]="listSkill.confirms" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmsNames">las personas: </label>
+                        <input type="text" class="form-control" id="confirmsNames" name="confirmsNames"
+                            [(ngModel)]="listSkill.confirmsNames" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="outerStrokeColor">outerStrokeColor</label>
+                        <input type="color" class="form-control" id="outerStrokeColor" name="outerStrokeColor"
+                            [(ngModel)]="listSkill.outerStrokeColor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="innerStrokeColor">innerStrokeColor</label>
+                        <input type="color" class="form-control" id="innerStrokeColor" name="innerStrokeColor"
+                            [(ngModel)]="listSkill.innerStrokeColor" required>
+                    </div>
+                    <!--
+                    <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">Actualizar</button>
+                    -->
+                    <button class="btn btn-warning" (click)="modificarSkill(listSkill.id)" data-bs-target="#editSkill" data-bs-toggle="modal">modificar</button>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Nuevo-->
+
+<div class="modal fade" id="newSkill" tabindex="-1" role="dialog"
+    aria-labelledby="editSkillLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSkillLabel">Editar</h5>
+            </div>
+            <div class="modal-body">
+            <form novalidate #f="ngForm">
+                <div class="form-group">
+                    <label for="name">Aptitud</label>
+                        <input type="text" class="form-control" id="name" name="name" 
+                        [(ngModel)]="name" required>
+
+                </div>
+                <div class="form-group">
+                    <label for="edad">Progreso</label>
+                        <input type="number" class="form-control" id="progress" name="progress" 
+                        [(ngModel)]="progress" >
+                    
+                </div>
+                <div class="form-group">
+                    <label for="confirms">Confirmado por</label>
+                        <input type="number" class="form-control" id="confirms" name="confirms" 
+                        [(ngModel)]="confirms" >
+                </div>
+            
+                <div class="form-group">
+                    <label for="confirmsNames">personas:   </label>
+                        <input type="text" class="form-control" id="confirmsNames" name="confirmsNames" 
+                        [(ngModel)]="confirmsNames" >
+                </div>
+                <div class="form-group">
+                    <label for="confirmsNames">circulo externo</label>
+                        <input id=#selectOuter type="color" class="form-control" id="outerStrokeColor" name="outerStrokeColor" 
+                        [(ngModel)]="outerStrokeColor" >
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmsNames">Circulo interno</label>
+                        <input id=#selectInner type="color" class="form-control" id="innerStrokeColor" name="innerStrokeColor" value="innerStrokeColor"
+                        [(ngModel)]="innerStrokeColor" >
+                </div>
+
+                <br>
+                <button class="btn btn-danger" [disabled]="!f.valid" (click)="onCreate()">Crear</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>

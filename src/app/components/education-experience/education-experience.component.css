@@ -1,18 +1,15 @@
 .row{
 
     padding:20px;
-    
-}
-div{
     background-color:dodgerblue;
-   
 }
+
 h1, h3{
     display:inline
    
 }
 .data-container {
-    background-color:rgb(107, 177, 246);
+    background-color:dodgerblue;
     
 }
 .border{
@@ -22,4 +19,7 @@ h1, h3{
 }
 .btn-group{
     justify-content:end;
+}
+ul{
+    list-style:none;
 }

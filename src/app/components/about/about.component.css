@@ -1,12 +1,9 @@
 
 .row{
     padding:30px;
-}
-
-
-div{
     background-color:dodgerblue;
 }
+
 .about{
     background-color:dodgerblue;
 }
@@ -20,7 +17,7 @@ div{
         min-width:20%;
         max-width: 100%;
         border-radius:100%;
-        box-shadow: 3px 3px 40px rgb(225, 235, 184)!important;
+        box-shadow: 3px 3px 40px rgb(225, 235, 184);
         left: -4%;
         
     }
@@ -29,8 +26,8 @@ div{
         margin-top:5%;
     }
     .nuevo{
-        margin-left:45%;
-        float:inline-end;
+        margin-left:30%;
+        float:inline-start;
     }
 }
 

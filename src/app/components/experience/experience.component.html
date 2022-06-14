@@ -1,5 +1,5 @@
 <div class="row">
-    <h1>Experiencia Laboral   <button class="btn btn-info mb-1" routerLink="/experienceNuevo"> Nuevo</button>
+    <h1>Experiencia Laboral   <button class="btn btn-info mb-1" data-bs-target="#newExperience" data-bs-toggle="modal"> Nuevo</button>
     </h1>
     <div class="border">
 
@@ -11,15 +11,15 @@
                 <div class="data-container">
                 <div class="list-info">
                     <div>
+                        <img src={{experience.urlimg}} class="img-fluid img-education">
                         <h3>Posición: {{experience.position}} </h3>
                         <h3>en: {{experience.company}} </h3> - 
                         <h3>( {{experience.starts}} - {{experience.ends}} ) </h3>
-                        <h3>{{experience.urlimg}}</h3>
+                        
                         <h3>{{experience.mode}}</h3>
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-info">Agregar</button>
-                        <button type="button" class="btn btn-warning" routerLink="/experienceEdit/{{experience.id}}">Editar</button>
+                        <button type="button" class="btn btn-warning" (click)="getExperienceEdit(experience)" data-bs-target="#editExperience" data-bs-toggle="modal">Editar</button>
                         <button type="button" class="btn btn-danger" (click)="borrarExperienceDeLista(experience)">Eliminar</button>
                       </div>   
                 
@@ -32,4 +32,111 @@
        
 
     </div>
+</div>
+<!--Edicion-->
+<div class="modal fade" id="editExperience" tabindex="-1" role="dialog"
+    aria-labelledby="editExperienceLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editExperienceLabel">Editar</h5>
+            </div>
+            <div *ngIf="editExpeList" class="modal-body">
+                <form novalidate #f="ngForm">
+                <div class="form-group">
+                    <label for="position">Titulo: </label>
+                    <input type="text" class="form-control" id="position" name="position"
+                    [(ngModel)]="editExpeList.position" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Titulo: </label>
+                    <input type="text" class="form-control" id="company" name="company"
+                    [(ngModel)]="editExpeList.company" required>
+                </div>
+                <div class="form-group">
+                    <label for="starts">Inicio: </label>
+                    <input type="number" class="form-control" id="starts" name="starts"
+                    [(ngModel)]="editExpeList.starts" required>
+                </div>
+                <div class="form-group">
+                    <label for="ends">Fin: </label>
+                    <input type="number" class="form-control" id="ends" name="ends"
+                    [(ngModel)]="editExpeList.ends" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="urlimg">UrlImage:  </label>
+                    <input type="text" class="form-control" id="urlimg" name="urlimg"
+                    [(ngModel)]="editExpeList.urlimg" required>
+                </div>
+                <div class="form-group">
+                    <label for="mode">UrlImage:  </label>
+                    <input type="text" class="form-control" id="mode" name="mode"
+                    [(ngModel)]="editExpeList.mode" required>
+                </div>
+                    <!--
+                    <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">Actualizar</button>
+                    -->
+                    <button class="btn btn-warning" (click)="modificarExperiencia(editExpeList.id)" data-bs-target="#editEducation" data-bs-toggle="modal">modificar</button>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Nuevo-->
+
+<div class="modal fade" id="newExperience" tabindex="-1" role="dialog"
+    aria-labelledby="editExperienceLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editExperienceLabel">Editar</h5>
+            </div>
+            <div class="modal-body">
+            <form novalidate #f="ngForm">
+                <div class="form-group">
+                    <label for="position">Experiencia</label>
+                        <input type="text" class="form-control" id="position" name="position" 
+                        [(ngModel)]="position" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                        <input type="text" class="form-control" id="company" name="company" 
+                        [(ngModel)]="company" >
+                </div>
+                <div class="form-group">
+                    <label for="starts">Inicio</label>
+                        <input type="number" class="form-control" id="starts" name="starts" 
+                        [(ngModel)]="starts" >
+                </div>
+                <div class="form-group">
+                    <label for="ends">fin:</label>
+                        <input type="number" class="form-control" id="ends" name="ends" 
+                        [(ngModel)]="ends" >
+                </div>
+                <div class="form-group">
+                    <label for="urlimg">Imagen Url</label>
+                        <input type="text" class="form-control" id="urlimg" name="urlimg" 
+                        [(ngModel)]="urlimg" >
+                </div>    
+                
+                <div class="form-group">
+                    <label for="mode">Modo</label>
+                        <input type="text" class="form-control" id="mode" name="mode" 
+                        [(ngModel)]="mode" >
+                </div>
+                <br>
+                <button class="btn btn-danger" [disabled]="!f.valid" (click)="onCreate()">Crear</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
 </div>

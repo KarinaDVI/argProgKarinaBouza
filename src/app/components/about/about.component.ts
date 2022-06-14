@@ -12,6 +12,16 @@ export class AboutComponent implements OnInit {
  
   //personasList:any=null;
   personasList:Persona[] = [];
+  personaEdit: Persona[]|any;
+
+  nombre:string="";
+  apellido:string="";
+  edad:number=0;
+  seniority:string="";
+  urlimage:string="";
+  company:string="";
+  position:string="";
+  abouts:string="";
 
   constructor(public datosPersona: AboutServiceService) { }
 
@@ -23,19 +33,45 @@ export class AboutComponent implements OnInit {
     this.datosPersona.getAllPersons().subscribe((data:any[])=>{
       console.log(data);
       this.personasList=data;
-      //this.color();
-     //this.skillColor(<number>this.skillsList.progress);
     })
     }
 
-  //A probar despues:
+    getPersonaEdit(person: Persona): void {
+      //const id = this.activatedRoute.snapshot.params['id'];
+      this.datosPersona.getPersona(person.id!).subscribe(
+        (data) => {
+          this.personaEdit = data;
+        });
+    }
+
   borrarPersonaDeLista(personaParaBorrar: Persona): void{
     this.personasList= this.personasList.filter(p => p.id !== personaParaBorrar.id)
     this.datosPersona.deletePersona(this.personasList, personaParaBorrar).subscribe();
   }
+  onUpdate(): void {
+    //const id = this.activatedRoute.snapshot.params['id'];
+    const idp = this.personaEdit.id
+    this.datosPersona.updatePersona(idp, this.personaEdit).subscribe(
+    );
+    window.location.reload();
+  }
 
-  modificarPersona(personaParaEditar:Persona){
-    this.personasList= this.personasList.filter(p => p.id !== personaParaEditar.id)
+  onCreate():void{
+    const newPersona = new Persona(this.nombre,this.apellido,this.edad,this.seniority,
+      this.urlimage,this.company,this.position,this.abouts);
+
+    this.datosPersona.savePersona(newPersona).subscribe(
+      data => {
+        alert("About creado");
+        //this.router.navigate(['/']);
+      }
+    )
+    window.location.reload();
+  }
+
+  modificarPersona(personaId:number){
+    this.datosPersona.updatePersona(personaId, this.personaEdit).subscribe();
+    window.location.reload();
   }
 
 

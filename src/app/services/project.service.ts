@@ -32,7 +32,7 @@ export class ProjectService {
     return this.http.get<Project>(this.projectUrl + `/one/${id}`);
   }
  
-  public updateProject(id:number, project:Project):Observable<any>{
+  public updateProject(id:any|number, project:Project):Observable<any>{
     return this.http.put<any>(this.projectUrl + `/edit/${id}`,project);
   }
 

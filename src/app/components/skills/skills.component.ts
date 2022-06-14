@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Skill } from 'src/app/models/Skill';
-//import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SkillServiceService } from 'src/app/services/skill-service.service';
-import { SwitchModalSkillService } from 'src/app/services/switch-modal-skill.service';
 
 @Component({
   selector: 'app-skills',
@@ -11,73 +10,81 @@ import { SwitchModalSkillService } from 'src/app/services/switch-modal-skill.ser
 })
 export class SkillsComponent implements OnInit {
 
-  radius:number=100;
-  modalSwitch: boolean=false;
-  skillsList:Skill[]=[];
+  radius: number = 100;
+  skillsList: Skill[] = [];
+  listSkill: Skill[] | any;
   /*skillEdit:any=null;
   
   listSkill: Skill | undefined;
   */
-  constructor(private skillsDataService: SkillServiceService, 
-              private modalSS : SwitchModalSkillService
-              
-              //private activatedRoute: ActivatedRoute,
-              //private router: Router
-              ) { }
-    
-  ngOnInit():void {
+  name: string = "";
+  progress: number = 0;
+  confirms: number = 0;
+  confirmsNames: string = "";
+  outerStrokeColor: string = "";
+  innerStrokeColor: string = "";
+  
+  constructor(private skillsDataService: SkillServiceService,
+    private activatedRoute: ActivatedRoute,
+  ) { }
+
+  ngOnInit(): void {
 
     this.cargarSkill();
-    this.modalSS.$modal.subscribe((valor)=> {this.modalSwitch = valor})
-
-  }
-   
-  outerStrokeColor:string=this.color();
-
-  skillColor(progress:number):string{
-    if(progress!==0){
-      this.outerStrokeColor=this.color();
-    }return this.outerStrokeColor
   }
 
-cargarSkill():void{
-  this.skillsDataService.getAllSkill().subscribe((data:any[])=>{
-    console.log(data);
-    this.skillsList=data;
-  })
+  cargarSkill(): void {
+    this.skillsDataService.getAllSkill().subscribe((data: any[]) => {
+      console.log(data);
+      this.skillsList = data;
+    })
   }
 
-  borrarSkillDeLista(skillParaBorrar: Skill): void{
-    this.skillsList= this.skillsList.filter(p => p.id !== skillParaBorrar.id)
+  getSkillEdit(skill: Skill): void {
+    //const id = this.activatedRoute.snapshot.params['id'];
+    
+    this.skillsDataService.getSkill(skill.id!).subscribe(
+      (data) => {
+        this.listSkill = data;
+      });
+      
+  }
+
+  borrarSkillDeLista(skillParaBorrar: Skill): void {
+    this.skillsList = this.skillsList.filter(p => p.id !== skillParaBorrar.id)
     this.skillsDataService.deleteSkill(this.skillsList, skillParaBorrar).subscribe();
   }
 
-  
-  /*
-  modificarSkill(skillParaEditar:Skill){
-    this.skillEdit= this.skillsList.filter(p => p.id !== skillParaEditar.id)
-    this.skillsDataService.updateSkill( skillParaEditar.id!,this.skillEdit).subscribe();
-  }
-
   onUpdate(): void {
-    const id = this.activatedRoute.snapshot.params['id'];
-    this.skillsDataService.updateSkill(id, this.listSkill!).subscribe();
-    
-  }*/
-
-  openModal(){
-    this.modalSwitch = true;
-
-  }
-
-  //Dejar esta función para color picker en caso de necesidad
-  color():string{
-    let bg_colour:string="";
-    bg_colour= Math.floor(Math.random() * 16777215).toString(16);
-      bg_colour = "#" + ("000000" + bg_colour).slice(-6);
-      console.log(bg_colour);
-      return bg_colour;
+    //const id = this.activatedRoute.snapshot.params['id'];
+    const idj = this.listSkill.id
+    this.skillsDataService.updateSkill(idj, this.listSkill).subscribe(
       
-    }
+    );
+    alert("skills modificado");
+    window.location.reload();
+  }
+  onCreate():void{
+
+    const newSkill = new Skill(this.name,this.progress,this.confirms,
+      this.confirmsNames,this.outerStrokeColor,this.innerStrokeColor);
+
+    this.skillsDataService.saveSkill(newSkill).subscribe(
+      data => {
+        alert("About creado");
+        //this.router.navigate(['/']);
+        
+      }
+    )
+    window.location.reload();
+  }
+  
+  modificarSkill(skillId: number) {
+    this.skillsDataService.updateSkill(skillId, this.listSkill).subscribe();
+    window.location.reload();
+  }
+ 
+
 }
+
 

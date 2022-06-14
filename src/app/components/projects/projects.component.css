@@ -2,12 +2,20 @@
 
     padding:40px;
     background-color:dodgerblue;
+    
+}
+.border{
+    border-radius: 100px;
+    border-style: ridge;
 }
 .card{
-
+    
     padding:40px;
     background-color:dodgerblue;
     
+}
+.margin{
+    margin-top: 30px;
 }
 .contenedor{
     width:auto;
@@ -21,7 +29,7 @@
 .img-proyecto{
     box-shadow: 0px 0px 40px rgb(253, 250, 250);
    /* background-color: aliceblue;*/
-   vertical-align:0%;
+   
 }
 
 ul{

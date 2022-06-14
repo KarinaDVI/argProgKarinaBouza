@@ -18,23 +18,11 @@ import { GetDataServiceService } from './services/get-data-service.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutenticationService } from './services/autentication.service';
 import { InterceptorService } from './services/interceptor.service';
-import { EditAboutComponent } from './components/edit-about/edit-about.component';
-import { NewAboutComponent } from './components/new-about/new-about.component';
-import { NewSkillComponent } from './components/new-skill/new-skill.component';
-import { EditSkillComponent } from './components/edit-skill/edit-skill.component';
-import { ModalEditSkillComponent } from './components/modal-edit-skill/modal-edit-skill.component';
-import { SwitchModalSkillService } from './services/switch-modal-skill.service';
-import { ModalEditEducationComponent } from './components/modal-edit-education/modal-edit-education.component';
-import { NewEducationComponent } from './components/new-education/new-education.component';
-import { EditEducationComponent } from './components/edit-education/edit-education.component';
-import { ModalComponent } from './components/modal/modal.component';
-import { EditExperienceComponent } from './components/edit-experience/edit-experience.component';
-import { NewExperienceComponent } from './components/new-experience/new-experience.component';
-import { EditProjetcComponent } from './components/edit-projetc/edit-projetc.component';
-import { NewProjectComponent } from './components/new-project/new-project.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,18 +36,7 @@ import { NewProjectComponent } from './components/new-project/new-project.compon
     ProjectsComponent,
     FooterComponent,
     LoginComponent,
-    EditAboutComponent,
-    NewAboutComponent,
-    NewSkillComponent,
-    EditSkillComponent,
-    ModalEditSkillComponent,
-    ModalEditEducationComponent,
-    NewEducationComponent,
-    EditEducationComponent,
-    EditExperienceComponent,
-    NewExperienceComponent,
-    EditProjetcComponent,
-    NewProjectComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +44,8 @@ import { NewProjectComponent } from './components/new-project/new-project.compon
     AppRoutingModule,
     NgCircleProgressModule.forRoot({}),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
   ],
   providers: [GetDataServiceService, AutenticationService, 
   {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true},
