@@ -53,6 +53,7 @@ export class SkillsComponent implements OnInit {
   borrarSkillDeLista(skillParaBorrar: Skill): void {
     this.skillsList = this.skillsList.filter(p => p.id !== skillParaBorrar.id)
     this.skillsDataService.deleteSkill(this.skillsList, skillParaBorrar).subscribe();
+    window.location.reload();
   }
 
   onUpdate(): void {

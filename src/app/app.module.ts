@@ -12,17 +12,21 @@ import { EducationExperienceComponent }
 from './components/education-experience/education-experience.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } 
+import { HttpClientModule, HTTP_INTERCEPTORS } 
 from '@angular/common/http';
 import { GetDataServiceService } from './services/get-data-service.service';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { FooterComponent } from './components/footer/footer.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login.component';
 import { AutenticationService } from './services/autentication.service';
-import { InterceptorService } from './services/interceptor.service';
+import { interceptorProvider } from './services/interceptor.service';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule }   from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
+import { RegistroComponent } from './components/auth/registro.component';
+import { IndexComponent } from './components/index/index.component';
+import { MenuComponent } from './components/menu/menu.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,19 +40,23 @@ import { HomeComponent } from './components/home/home.component';
     ProjectsComponent,
     FooterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RegistroComponent,
+    IndexComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     NgCircleProgressModule.forRoot({}),
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
   ],
   providers: [GetDataServiceService, AutenticationService, 
-  {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true},
+  //{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true},
+  interceptorProvider
   ],
   bootstrap: [AppComponent]
 })

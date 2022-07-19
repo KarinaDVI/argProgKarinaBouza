@@ -3,10 +3,10 @@
      <h1 class="nuevo"><button class="btn btn-info mb-1" data-bs-target="#newPersona" data-bs-toggle="modal"> Nuevo</button>
     </h1>
     <div class="row" *ngFor="let persona of personasList">
-        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 ">
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
             <img id="fotoperfil" [src]="persona.urlimage" class="fotoperfil img-fluid rounded-circle" >
         </div>
-        <div id="nombre" class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
+        <div id="nombre" class="col-xs-12 col-sm-4 col-md-2 col-lg-2 col-xl-2">
 
             <p>{{persona.nombre}} {{persona.apellido}}</p>
             <div>
@@ -17,7 +17,7 @@
 
             </div>
         </div>
-        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
             <span>
                
                 <p>{{persona.abouts}}</p>
@@ -53,6 +53,11 @@
                         <label for="edad">Edad</label>
                         <input type="number" class="form-control" id="edad" name="edad" 
                         [(ngModel)]="personaEdit.edad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaNac">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNac" name="fechaNac" 
+                        [(ngModel)]="personaEdit.fechaNac" required>
                     </div>
                     <div class="form-group">
                         <label for="seniority">Seniority</label>
@@ -118,7 +123,11 @@
                     <label for="edad">Edad</label>
                         <input type="number" class="form-control" id="edad" name="edad" 
                         [(ngModel)]="edad" >
-                    
+                </div>
+                <div class="form-group">
+                    <label for="fechaNac">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="fechaNac" name="fechaNac" 
+                    [(ngModel)]="fechaNac" required>
                 </div>
                 <div class="form-group">
                     <label for="seniority">Seniority</label>

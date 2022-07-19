@@ -56,6 +56,7 @@ urlimg: string="";
     borrarEducationDeLista(educationParaBorrar: Educa): void{
       this.listEducation= this.listEducation.filter(p => p.id !== educationParaBorrar.id)
       this.educationService.deleteEducation(this.listEducation, educationParaBorrar).subscribe();
+      window.location.reload();
     }
 
     onUpdate(): void {

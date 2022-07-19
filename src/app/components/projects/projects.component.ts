@@ -43,6 +43,7 @@ export class ProjectsComponent implements OnInit {
   borrarProjectDeLista(projectParaBorrar: Project): void{
     this.projectList= this.projectList.filter(p => p.id !== projectParaBorrar.id)
     this.projectService.deleteProject(this.projectList, projectParaBorrar).subscribe();
+    window.location.reload();
   }
   onUpdate(): void {
     //const id = this.activatedRoute.snapshot.params['id'];

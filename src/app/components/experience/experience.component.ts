@@ -12,8 +12,8 @@ import { GetDataServiceService } from 'src/app/services/get-data-service.service
 
   export class ExperienceComponent implements OnInit {
 
-    listExperience:Experience[]=[];
-    editExpeList:Experience[]|any;
+    listExperience: Experience[]=[];
+    editExpeList: Experience[]|any;
 
     position:string="";
     company:string="";
@@ -53,6 +53,7 @@ import { GetDataServiceService } from 'src/app/services/get-data-service.service
         borrarExperienceDeLista(experienceParaBorrar: Experience): void{
           this.listExperience= this.listExperience.filter(p => p.id !== experienceParaBorrar.id)
           this.expeService.deleteExperience(this.listExperience, experienceParaBorrar).subscribe();
+          window.location.reload();
         }
 
         onUpdate(): void {

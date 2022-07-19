@@ -17,6 +17,7 @@ export class AboutComponent implements OnInit {
   nombre:string="";
   apellido:string="";
   edad:number=0;
+  fechaNac:string="";
   seniority:string="";
   urlimage:string="";
   company:string="";
@@ -47,6 +48,7 @@ export class AboutComponent implements OnInit {
   borrarPersonaDeLista(personaParaBorrar: Persona): void{
     this.personasList= this.personasList.filter(p => p.id !== personaParaBorrar.id)
     this.datosPersona.deletePersona(this.personasList, personaParaBorrar).subscribe();
+    window.location.reload();
   }
   onUpdate(): void {
     //const id = this.activatedRoute.snapshot.params['id'];
@@ -57,7 +59,7 @@ export class AboutComponent implements OnInit {
   }
 
   onCreate():void{
-    const newPersona = new Persona(this.nombre,this.apellido,this.edad,this.seniority,
+    const newPersona = new Persona(this.nombre,this.apellido,this.edad,this.fechaNac,this.seniority,
       this.urlimage,this.company,this.position,this.abouts);
 
     this.datosPersona.savePersona(newPersona).subscribe(
