@@ -23,14 +23,5 @@ export class Persona{
         this.position = position;
         this.abouts = abouts;
     }
-    /*edadMia(): number{
-        let currentTime = new Date()
-        let month = currentTime. getMonth()
-        let day = currentTime.getDay()
-        if (month==6 && day==3){
-            this.edad++;
-            
-        }else{this.edad=this.edad}
-        return this.edad
-    }*/
+
 }

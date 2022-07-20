@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
         this.isLogged = false;
         this.isLoginFail = true;
         this.errMsj = err.error.mensaje;
+        alert("Login falló")
         //console.log(this.errMsj);
         
       })

@@ -1,26 +1,9 @@
-header{
-    background-color:lightskyblue;
 
-    
-}
-div{
-    opacity:50;
-}
+
+
 * {
     background-color: dodgerblue;
     color:antiquewhite;
+    
     font-size:larger;
-    width:auto;
 }
-ul{
-    list-style: none;
-}
-/*.contenedor{
-    display:flex;
-    align-items: stretch;
-}*/
-app-home{
-    width:auto;
-}
-
-

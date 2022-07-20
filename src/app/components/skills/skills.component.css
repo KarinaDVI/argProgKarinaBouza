@@ -12,6 +12,7 @@
     background-color:dodgerblue;
     padding-left: -1rem;
     margin-right: -12px;
+    border:0px;
     
 }
 circle-progress{
@@ -27,6 +28,7 @@ circle-progress{
     display: flex;
     flex-direction:row;
     align-items: center;
+    
 }
 
 .flotante{
