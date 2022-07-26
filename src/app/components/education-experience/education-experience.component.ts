@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Educa } from 'src/app/models/Educa';
 import { EducationService } from 'src/app/services/education.service';
-//import { Educa } from 'src/app/models/Educa';
-import { GetDataServiceService } from 'src/app/services/get-data-service.service';
+import { TokenService } from 'src/app/services/token.service';
 
 
 @Component({
@@ -23,16 +22,24 @@ school: string="";
 status: string="";
 urlimg: string="";
 
+roles: string[]=[];
+isAdmin = false;
   
-  constructor(private datosEduExpe:GetDataServiceService,
-              private educationService:EducationService,
+  constructor(private educationService:EducationService,
               private activatedRoute: ActivatedRoute,
-              private router: Router
+              private router: Router,
+              private tokenService: TokenService
               ) { }
   
 
   ngOnInit(): void {
     this.cargarEducation();
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach(rol => {
+      if (rol === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
 
   }
 

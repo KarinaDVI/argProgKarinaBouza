@@ -1,6 +1,8 @@
-div{
-    background-color: dodgerblue;
+.row > *{
+    padding-right:0px;
 }
+
+
 app-login{
     float:right;
     margin-top:15px;

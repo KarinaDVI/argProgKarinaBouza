@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from 'src/app/models/Persona';
 import { AboutServiceService } from 'src/app/services/about-service.service';
-import { GetDataServiceService } from 'src/app/services/get-data-service.service';
+import { TokenService } from 'src/app/services/token.service';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  //MGCion
  
-  //personasList:any=null;
+  roles: string[]=[];
+  isAdmin = false;
+
   personasList:Persona[] = [];
   personaEdit: Persona[]|any;
 
@@ -24,21 +25,28 @@ export class AboutComponent implements OnInit {
   position:string="";
   abouts:string="";
 
-  constructor(public datosPersona: AboutServiceService) { }
+  constructor(public datosPersona: AboutServiceService, 
+              private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.getAllPersons();
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach(rol => {
+      if (rol === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
+   
   }
 
   getAllPersons():void{
     this.datosPersona.getAllPersons().subscribe((data:any[])=>{
-      console.log(data);
       this.personasList=data;
     })
     }
 
     getPersonaEdit(person: Persona): void {
-      //const id = this.activatedRoute.snapshot.params['id'];
+
       this.datosPersona.getPersona(person.id!).subscribe(
         (data) => {
           this.personaEdit = data;
@@ -51,10 +59,11 @@ export class AboutComponent implements OnInit {
     window.location.reload();
   }
   onUpdate(): void {
-    //const id = this.activatedRoute.snapshot.params['id'];
+
     const idp = this.personaEdit.id
     this.datosPersona.updatePersona(idp, this.personaEdit).subscribe(
     );
+
     window.location.reload();
   }
 
@@ -65,7 +74,6 @@ export class AboutComponent implements OnInit {
     this.datosPersona.savePersona(newPersona).subscribe(
       data => {
         alert("About creado");
-        //this.router.navigate(['/']);
       }
     )
     window.location.reload();

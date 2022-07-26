@@ -1,20 +1,15 @@
 .row{
-    padding:20px;
-    background-color:dodgerblue;
+    padding:30px;
 }
 
 h1, h3{
     display:inline
    
 }
-.data-container {
-    background-color:dodgerblue;
-    
-}
+
 .border{
     padding:40px;
-    border-radius: 100px;
-    border-style: ridge;
+    border:0px;
 }
 .btn-group{
     justify-content:end;

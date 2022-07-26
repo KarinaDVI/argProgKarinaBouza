@@ -1,22 +1,33 @@
+<!--Vista-->
 <div class="contenedor">
 <div class="row">
-    <h1>Proyectos realizados <button class="btn btn-info" data-bs-target="#newProject" data-bs-toggle="modal"> Nuevo</button>
-            </h1>
+    <div class="btn-edit"> 
+        <h1>Proyectos realizados 
+            <br>
+            <hr>
+            <td *ngIf="isAdmin"><a href="#" class="btn-right"><i class="fa-solid fa-circle-plus fa-xs" data-bs-target="#newProject" data-bs-toggle="modal"></i></a>
+            </td>
+        </h1>
+    </div>
     <div class="border">
         <div class="margin">
         <ul class="item-list">
             <li *ngFor="let project of projectList">
                 <div class="col-sm-11 col-md-7 col-lg-7 parte1">
                     <h3>{{project.name}}</h3>
-                    <h3>{{project.aboutProject}}</h3>
+                    <div class="btn-edit"> 
+                        <h3>{{project.aboutProject}}
+                            <td *ngIf="isAdmin"><a href="#" class="btn-right"><i class="fa-solid fa-pen-to-square fa-sm fa-fw" (click)="getProjectEdit(project)"data-bs-target=" #editProject" data-bs-toggle="modal"></i></a>  
+                            </td>
+                            <td *ngIf="isAdmin"><a href="#" class="btn-right"><i class="fa-solid fa-trash fa-sm fa-fw" (click)="borrarProjectDeLista(project)"></i></a> 
+                            </td> 
+                        </h3> 
+                    </div>
                 </div>
                 <div class="col-sm-11 col-md-3 col-lg-3 offset-md-1 offset-lg-1 parte2">
                     <img src={{project.urlimg}} class="img-fluid img-proyecto">
                 </div>
-                <div>
-                    <button class="btn btn-danger mb-3" (click)="borrarProjectDeLista(project)">Eliminar</button>
-                    <button class="btn btn-warning mb-3" (click)="getProjectEdit(project)"data-bs-target=" #editProject" data-bs-toggle="modal">Editar</button>
-                </div>
+           
             </li>
         </ul>
     </div>
@@ -30,7 +41,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editProjectLabel">Editar</h5>
+                <h5 class="modal-title" id="editProjectLabel">Editar Proyecto</h5>
             </div>
             <div *ngIf="listProject" class="modal-body">
                 <form novalidate #f="ngForm">
@@ -49,14 +60,10 @@
                         <input type="text" class="form-control" id="urlimg" name="urlimg"
                         [(ngModel)]="listProject.urlimg" required>
                     </div>
-                    <!--
-                    <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">Actualizar</button>
-                    -->
-                    <button class="btn btn-warning" (click)="modificarProject(listProject.id)">modificar</button>
-                    
                 </form>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-warning" (click)="modificarProject(listProject.id)">modificar</button>
                 <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
@@ -66,11 +73,11 @@
 <!--Nuevo-->
 
 <div class="modal fade" id="newProject" tabindex="-1" role="dialog"
-    aria-labelledby="editProjectLabel" aria-hidden="true">
+    aria-labelledby="newProjectLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editProjectLabel">Editar</h5>
+                <h5 class="modal-title" id="newProjectLabel">Nuevo Proyecto</h5>
             </div>
             <div class="modal-body">
             <form novalidate #f="ngForm">
@@ -92,10 +99,11 @@
                             [(ngModel)]="aboutProject" >
                     </div>
                     <br>
-                    <button class="btn btn-danger" [disabled]="!f.valid" (click)="onCreate()">Crear</button>
+                    
             </form>
         </div>
         <div class="modal-footer">
+            <button class="btn btn-danger" [disabled]="!f.valid" (click)="onCreate()">Crear</button>
             <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
         </div>
     </div>

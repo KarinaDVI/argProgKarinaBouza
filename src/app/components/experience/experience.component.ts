@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Experience } from 'src/app/models/Experience';
 import { ExperienceService } from 'src/app/services/experience.service';
-import { GetDataServiceService } from 'src/app/services/get-data-service.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-experience',
@@ -21,18 +21,25 @@ import { GetDataServiceService } from 'src/app/services/get-data-service.service
     ends:number=0;
     urlimg:string="";
     mode:string="";
+    roles: string[]=[];
+    isAdmin = false;
       
-      constructor(private datosEduExpe:GetDataServiceService,
-                  private expeService:ExperienceService,
+      constructor(private expeService:ExperienceService,
                   private activatedRoute: ActivatedRoute,
-                  private router: Router
+                  private router: Router,
+                  private tokenService: TokenService
                   ) { }
       
       //educa = new Educa("2008","#","EEMNº2 BR","finalizado");
     
       ngOnInit(): void {
         this.cargarExperience();
-    
+        this.roles = this.tokenService.getAuthorities();
+        this.roles.forEach(rol => {
+          if (rol === 'ROLE_ADMIN') {
+            this.isAdmin = true;
+          }
+        });
       }
       
       cargarExperience():void{

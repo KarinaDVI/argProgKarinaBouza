@@ -35,21 +35,14 @@ export class RegistroComponent implements OnInit {
     this.nuevoUsuario = new NuevoUsuario(this.nombre, this.nombreUsuario, this.email, this.password);
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
-        alert("Cuenta creada bien")
-       /* this.toastr.success('Cuenta Creada', 'OK', {
-          //timeOut: 3000, positionClass: 'toast-top-center'
-        });*/
-
+        alert("Cuenta creada bien");
         this.router.navigate(['/login']);
       },
       err => {
         this.errMsj = err.error.mensaje;
         console.log(this.errMsj);
         alert("Fallo al crear usuario")
-       // this.toastr.error(this.errMsj, 'Fail', {
-          //timeOut: 3000,  positionClass: 'toast-top-center',
         });
-         //console.log(err.error.message);
       }
     
   }

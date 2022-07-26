@@ -1,36 +1,42 @@
 
 <div class="row">
-    <h1>Educacion y Experiencia Laboral  <button class="btn btn-info mb-1" data-bs-target="#newEducation" data-bs-toggle="modal"> Nuevo</button>
-    </h1>
-    <div class="border">
+    <div class="btn-edit"> 
+        <h1>Educacion <br>
+            <hr>
+            <td *ngIf="isAdmin"><a href="#" class="btn-right"><i class="fa-solid fa-circle-plus fa-xs" data-bs-target="#newEducation" data-bs-toggle="modal"></i></a>
+            </td>
+            </h1>
+    </div>
 
+    <div >
    <div class="col-lg-1"></div>
     <div class="col-lg-11">
         
         <ul class="item-list">
             <li *ngFor="let education of listEducation">
                 <div class="data-container">
-                <div class="list-info">
-                    <div>
+                <div class="row">
+                    <div class="col-sm-11 col-md-2 col-lg-2 offset-md-0 offset-lg-0 parte2">
                         <img src={{education.urlimg}} class="img-fluid img-education">
-                        <h3>Educación: {{education.school}} </h3>
-                        <h3>Título: {{education.title}} </h3> - 
-                        <h3>( {{education.starts}} - {{education.ends}} ) </h3>
-                        <h3>{{education.status}}</h3>
-                        
+                        </div>
+                    <div class="col-sm-11 col-md-7 col-lg-7 parte1">
+                        <h4>Educación: {{education.school}} </h4> 
+                        <h4>Título: {{education.title}} - 
+                        ( {{education.starts}} - {{education.ends}} ) </h4>
+                        <div class="btn-edit"> 
+                        <h4>{{education.status}}
+                            <td *ngIf="isAdmin"><a href="#" class="btn-right"><i class="fa-solid fa-pen-to-square fa-m fa-fw" (click)="getEducationEdit(education)" data-bs-target="#editEducation" data-bs-toggle="modal"></i></a>  
+                            </td>
+                        <td *ngIf="isAdmin"><a href="#" class="btn-right"><i class="fa-solid fa-trash fa-m fa-fw" (click)="borrarEducationDeLista(education)"></i></a> 
+                        </td> 
+                        </h4> 
                     </div>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-warning" (click)="getEducationEdit(education)" data-bs-target="#editEducation" data-bs-toggle="modal">Editar</button>
-                        <button type="button" class="btn btn-danger" (click)="borrarEducationDeLista(education)">Eliminar</button>
-                      </div>   
-                
+                    </div>
                 </div>
-            </div>
+                </div>
             </li>
         </ul>
     </div>
-       
-
     </div>
 </div>
 
@@ -40,7 +46,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editSkillLabel">Editar</h5>
+                <h5 class="modal-title" id="editEducationLabel">Editar Educacion</h5>
             </div>
             <div *ngIf="editEducaList" class="modal-body">
                 <form novalidate #f="ngForm">
@@ -77,11 +83,12 @@
                     <!--
                     <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">Actualizar</button>
                     -->
-                    <button class="btn btn-warning" (click)="modificarEducacion(editEducaList.id)" data-bs-target="#editEducation" data-bs-toggle="modal">modificar</button>
+                   
                     
                 </form>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-warning" (click)="modificarEducacion(editEducaList.id)" data-bs-target="#editEducation" data-bs-toggle="modal">modificar</button>
                 <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
@@ -91,11 +98,11 @@
 <!--Nuevo-->
 
 <div class="modal fade" id="newEducation" tabindex="-1" role="dialog"
-    aria-labelledby="editEducationLabel" aria-hidden="true">
+    aria-labelledby="newEducationLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editSkillLabel">Editar</h5>
+                <h5 class="modal-title" id="newEducationLabel">Crear Educacion</h5>
             </div>
             <div class="modal-body">
             <form novalidate #f="ngForm">
@@ -134,10 +141,11 @@
                         [(ngModel)]="urlimg" >
                 </div>
                 <br>
-                <button class="btn btn-danger" [disabled]="!f.valid" (click)="onCreate()">Crear</button>
+                
             </form>
         </div>
         <div class="modal-footer">
+            <button class="btn btn-danger" [disabled]="!f.valid" (click)="onCreate()">Crear</button>
             <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
         </div>
     </div>

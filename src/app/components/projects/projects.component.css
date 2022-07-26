@@ -1,21 +1,24 @@
 .row{
 
     padding:40px;
-    background-color:dodgerblue;
     
 }
 .border{
     border-radius: 100px;
     border-style: ridge;
+    padding-bottom: 30px;
+
 }
 .card{
     
     padding:40px;
-    background-color:dodgerblue;
     
 }
 .margin{
     margin-top: 30px;
+    padding: 5%;
+    text-align: center;
+
 }
 .contenedor{
     width:auto;
@@ -35,4 +38,9 @@
 ul{
     list-style:none;
 }
+li{
+    padding-top:1%;
+    padding-bottom: 1%;
+}
+
    

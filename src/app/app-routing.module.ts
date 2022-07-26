@@ -3,6 +3,7 @@ import { LoginComponent } from './components/auth/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { RegistroComponent } from './components/auth/registro.component';
 import { HomeComponent } from './components/home/home.component';
+import { GuardGuard } from './services/guard.guard';
 //import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
   //,
   //Original
   //{path:'',redirectTo:'login',pathMatch:'full'}//,
-  //{path: 'editAbout',component:EditAboutComponent,canActivate:[GuardGuard]}
+  //{path: '/#editpersona',component: HomeComponent,canActivate:[GuardGuard]}
 
 ];
 
