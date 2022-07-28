@@ -9,7 +9,8 @@ import { Persona } from '../models/Persona';
 })
 export class AboutServiceService {
 
-  aboutUrl = 'http://localhost:8080/apikb/person'
+  //'http://localhost:8080/apikb/education'
+  aboutUrl = 'https://apikbhero.herokuapp.com'
 
   constructor(private http:HttpClient) { }
 
@@ -22,7 +23,7 @@ export class AboutServiceService {
   }
   getAllPersons(): Observable<Persona[]>{
 
-    return this.http.get<Persona[]>(this.aboutUrl+'/all').pipe(
+    return this.http.get<Persona[]>(this.aboutUrl+'/apikb/person/all').pipe(
       catchError(this.handleError<Persona[]>('getAllPersona',[]))
   );
 }
@@ -30,25 +31,25 @@ export class AboutServiceService {
     return this.http.post<any>(this.aboutUrl + '/',newPersona);
   }
   public getPersona(id: number):Observable<Persona> {
-    return this.http.get<Persona>(this.aboutUrl + `/one/${id}`);
+    return this.http.get<Persona>(this.aboutUrl + `/apikb/person/one/${id}`);
   }
   /*public getByName(nombre:String):Observable<Persona>{
     return this.http.get<Persona>(this.aboutUrl + `/${nombre}`);
   }*/
 
   public updatePersona(id:any|number,persona:Persona):Observable<any>{
-    return this.http.put<any>(this.aboutUrl + `/edit/${id}`,persona);
+    return this.http.put<any>(this.aboutUrl + `/apikb/person/edit/${id}`,persona);
   }
   
   //Usar este..//(Prefereible)
   public removerPersona(id: number): Observable<Persona>{
-    return this.http.delete<Persona>(this.aboutUrl + `/${id}`)
+    return this.http.delete<Persona>(this.aboutUrl + `/apikb/person/${id}`)
   };
 
   //O este..
   deletePersona(personas: Persona[], personaParaBorrar: Persona ): Observable<Persona> {
     personas.filter(p => p.id !== personaParaBorrar.id)
-    return this.http.delete<any>(this.aboutUrl + "/" + personaParaBorrar.id);
+    return this.http.delete<any>(this.aboutUrl + "/apikb/person/" + personaParaBorrar.id);
   }
 
 }

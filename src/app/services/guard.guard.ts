@@ -25,7 +25,7 @@ export class GuardGuard implements CanActivate {
         }
       });
       if (!this.tokenService.getToken() || expectedRol.indexOf(this.realRol) === -1) {
-        //this.router.navigate(['/']);
+        
         return false;
       }
       return true;
